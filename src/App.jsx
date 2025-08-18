@@ -7,7 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Home/Dashboard";
 import EditResume from "./pages/ResumeUpdate/forms/EditResume";
 
-const App = () => {
+function App (){
   return (
     <>
     <div>

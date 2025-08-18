@@ -63,33 +63,21 @@ export default LandingPage
 */}
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import IMAGE from '../assets/image.png'
 import Modal from '../Components/Modal';
+import Login from "./Auth/Login";
+import SignUp from "./Auth/SignUp";
 
 const LandingPage = () => {
-  // eslint-disable-next-line no-unused-vars
-  const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
-  const [openAuthModal, setOpenAuthModal] = useState(true);
-  // eslint-disable-next-line no-unused-vars
+  
+  //const navigate = useNavigate();
+  const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {
-    // Logic for handling the main call to action
+     //Logic for handling the main call to action
     console.log("Create My Resume button clicked!");
-  };
-
-  const handleLogin = () => {
-    setOpenAuthModal(true);
-    setCurrentPage("login");
-    console.log("Log In button clicked!");
-  };
-
-  const handleSignUp = () => {
-    setOpenAuthModal(true);
-    setCurrentPage("signup");
-    console.log("Sign Up button clicked!");
   };
 
   return (
@@ -120,16 +108,11 @@ const LandingPage = () => {
           <div className="flex space-x-4">
             <button
               className="bg-[#007BFF] text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-[#0056b3] transition-colors cursor-pointer"
-              onClick={handleLogin}
-            >
-              Log In
+              onClick={() => setOpenAuthModal(true)}>
+            
+              Log In / Sign Up
             </button>
-            <button
-              className="bg-transparent border-2 border-[#007BFF] text-[#007BFF] font-semibold px-6 py-2.5 rounded-lg hover:bg-[#007BFF] hover:text-white transition-colors cursor-pointer"
-              onClick={handleSignUp}
-            >
-              Sign Up
-            </button>
+            
           </div>
         </header>
 
