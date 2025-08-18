@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import {useState} from 'react';
+import {validateEmail} from '../utils/helper.js';
+import Input from '../Components/Inputs';
 
 const Login = ({setCurrentPage}) => {
   const [email, setEmail] = useState("");
@@ -14,11 +16,10 @@ const Login = ({setCurrentPage}) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-/*
     if(!validateEmail(email)){
       setError("Please enter a valid email address.");
       return;
-    }*/
+    }
 
     if(!password){
       setError("Please enter the correct password.");
@@ -27,17 +28,20 @@ const Login = ({setCurrentPage}) => {
     setError("");
 
     //Login API call
-    /*try{
-      
-    }*/
+    try{ /* empty */ }
+    // eslint-disable-next-line no-unused-vars
+    catch(error){
+      /*empty*/
+    }
   };  
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
       <h3 className="text-lg font-semibold text-black">Welcome Back!</h3>
+      {/*
       <p className="text-xs text-slate-700 mt-[5px] mb-6">
         Please enter your details to log in.
       </p>
-
+*/}
       <form onSubmit={handleLogin}>
 
         <Input
@@ -56,7 +60,7 @@ const Login = ({setCurrentPage}) => {
           type="password"
           />
 
-        {error && <p className="text-redd-500 text-xs pb-2,5">{error}</p>}
+        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
         <button type="submit" className="btn-primary">
           Log In
