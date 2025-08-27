@@ -6,10 +6,11 @@ import LandingPage from "./pages/LandingPage";
 //import SignUp from "./pages/Auth/SignUp";
 import Dashboard from "./pages/Home/Dashboard";
 import EditResume from "./pages/ResumeUpdate/forms/EditResume";
+import UserProvider from "./Components/Context/userContext";
 
 function App (){
   return (
-    <>
+    <UserProvider>
     <div>
       <Router>
         <Routes>
@@ -28,11 +29,13 @@ function App (){
       toastOptions={{
         className: "",
         style: {
-          fontSize: "13px",},
-        }}>
+          fontSize: "13px",
+        },
+      }}
+      >
 
     </Toaster>
-    </>
+    </UserProvider>
   );
 };
 
