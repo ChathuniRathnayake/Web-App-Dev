@@ -2,7 +2,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import {useState} from 'react';
-import {validateEmail} from '../utils/helper.js';
+import {validateEmail} from '../../utils/helper.js';
 //import Input from '../Components/Inputs';
 
 

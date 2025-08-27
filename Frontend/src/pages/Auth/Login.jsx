@@ -1,13 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import {useState} from 'react';
-import {validateEmail} from '../utils/helper.js';
-import Input from '../Components/Inputs';
+import {useState, useContext} from 'react';
+import {validateEmail} from '../../utils/helper.js';
+import Input from "../../Components/Inputs/Input";
+import {UserContext} from "../../Context/userContext";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+
 
 const Login = ({setCurrentPage}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const {updateUser} = useContext(UserContext);
 
   // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
@@ -28,10 +34,27 @@ const Login = ({setCurrentPage}) => {
     setError("");
 
     //Login API call
-    try{ /* empty */ }
-    // eslint-disable-next-line no-unused-vars
+    try{
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email,
+        password,
+
+      });
+      const {token} = response.data;
+
+      if(token){
+        localStorage.setItem("token", token);
+        updateUser(response.data);
+        navigate("/dashboard");
+      }
+    }
     catch(error){
-      /*empty*/
+      if(error.response && error.response.data.message){
+        setError(error.response.data.message);
+      }
+      else{
+        setError("something went wrong. Try again.");
+      }
     }
   };  
   return (
