@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {useState, useContext} from 'react';
 import {validateEmail} from '../../utils/helper.js';
 import Input from "../../Components/Inputs/Input";
-import {UserContext} from "../../Context/userContext";
+import {UserContext} from "../../Components/Context/UserContext.js";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
@@ -15,7 +15,6 @@ const Login = ({setCurrentPage}) => {
 
   const {updateUser} = useContext(UserContext);
 
-  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
 
   //handle login from submit
