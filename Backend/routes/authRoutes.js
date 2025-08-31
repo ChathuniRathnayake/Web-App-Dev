@@ -10,19 +10,28 @@ router.post("/register", registerUser); // Register User
 router.post("/login", loginUser); // Login User
 router.get("/profile", protect, getUserProfile); // Get User Profile
 
-router.post("/upload-image", upload.single("image"), (req, res) => {
+router.post("/upload-image", protect, upload.single("image"), async (req, res) => {
     if(!req.file){
         return res.status(400).json({message: "No file uploaded"});
     }
-    /*
+    
     const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
         req.file.filename
     }`;
-    res.status(200).json({imageUrl});*/
-    res.json({
-    message: "File uploaded successfully",
-    file: req.file,
+    try{
+        req.user.profileImageUrl = imageUrl;
+        await req.user.save();
+
+        res.status(200).json({
+        message: "File uploaded successfully",
+        imageUrl,});
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({ message: "Failed to save image URL to user" });
+    }
+    
   });
-});
+
 
 module.exports = router;

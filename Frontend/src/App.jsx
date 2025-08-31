@@ -6,35 +6,36 @@ import LandingPage from "./pages/LandingPage";
 //import SignUp from "./pages/Auth/SignUp";
 import Dashboard from "./pages/Home/Dashboard";
 import EditResume from "./pages/ResumeUpdate/forms/EditResume";
-import UserProvider from "./Components/Context/userContext";
+import UserProvider from "./Components/Context/userContext.jsx";
+
 
 function App (){
   return (
     <UserProvider>
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage/>} />
-          {/*
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<SignUp/>} />
-          */}
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/resume:resumeID" element={<EditResume/>} />
-        </Routes>
-      </Router>
-    </div>
+      <div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LandingPage/>} />
+            {/*
+            <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<SignUp/>} />
+            */}
+            <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/resume:resumeID" element={<EditResume/>} />
+          </Routes>
+        </Router>
+      </div>
 
-    <Toaster
-      toastOptions={{
-        className: "",
-        style: {
-          fontSize: "13px",
-        },
-      }}
-      >
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            fontSize: "13px",
+          },
+        }}
+        >
 
-    </Toaster>
+      </Toaster>
     </UserProvider>
   );
 };

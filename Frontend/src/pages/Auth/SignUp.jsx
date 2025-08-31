@@ -1,10 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {validateEmail} from '../../utils/helper.js';
 //import Input from '../Components/Inputs';
-
+import Input from "../../Components/Inputs/Input";
+import ProfilePhotoSelector from "../../Components/Inputs/ProfilePhotoSelector";
+import axiosInstance from '../../utils/axiosInstance.js';
+import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from '../../Components/Context/UserContext.js';
+import uploadImage from '../../utils/uploadImage.js';
 
 
 const SignUp = ({setCurrentPage}) => {
@@ -13,6 +17,8 @@ const SignUp = ({setCurrentPage}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const {updateUser} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -39,11 +45,34 @@ const SignUp = ({setCurrentPage}) => {
 
     //Signup API call
     try{
-      /* empty */
+
+      if(profilePic){
+        const imgUploadRes = await uploadImage(profilePic);
+        profileImageUrl = imgUploadRes.imageUrl || "";
+      }
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: fullName,
+        email,
+        password,
+        profileImageUrl,
+      });
+
+      const {token} = response.data;
+
+      if(token) {
+        localStorage.setItem("token", token);
+        updateUser(response.data);
+        navigate("/dashboard");
+      }
     }
-    // eslint-disable-next-line no-unused-vars
+    
     catch(error){
-      /*empty*/
+      if(error.response && error.response.data.message){
+        setError(error.response.data.message);
+      }
+      else{
+        setError("something went wrong. Try again.");
+      }
     }
   }
   return (

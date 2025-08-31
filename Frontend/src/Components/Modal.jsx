@@ -2,7 +2,7 @@ import React from 'react';
 
 const Modal = ({
     children,
-    //isOpen,
+    isOpen,
     onClose,
     title,
     hideHeader,
@@ -11,11 +11,13 @@ const Modal = ({
     actionBtnText,
     onActionBtnClick,
 }) => {
+    if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 z-50 flex-center items-center w-full h-full bg-black/40">
+    <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black/40">
         {/*Modal content*/}
         <div
-            className={"relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden"}>
+            className={"relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden max-w-lg w-full"}>
                 {/*Modal Header*/}
                 {!hideHeader && (
                     <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -39,7 +41,7 @@ const Modal = ({
                             <svg
                                 className="w-3 h-3"
                                 aria-hidden="true"
-                                xlmns="http://www.w3.org/2000/svg"
+                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 14 14">
                                     <path
@@ -47,7 +49,7 @@ const Modal = ({
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
-                                        d="M1 1l6 6mo 0lg 6M7 7l6-6M7 7l-6 6"></path>
+                                        d="M1 1l6 6M7 7l-6 6"></path>
                                 </svg>
                         </button>
 
@@ -60,4 +62,4 @@ const Modal = ({
   )
 };
 
-export default Modal
+export default Modal;
