@@ -1,19 +1,24 @@
 import React, { useState, useContext } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import IMAGE from '../assets/image.png'
 import Modal from '../Components/Modal';
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
-import {UserContext} from './Components/Context/userContext.jsx';
+import { UserContext } from "../Components/Context/UserContext.js";
+import ProfileInfoCard from '../Components/Cards/ProfileInfoCard.jsx';
 
 const LandingPage = () => {
   const {user} = useContext(UserContext);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {
-     //Logic for handling the main call to action
+    if(!user){
+      setOpenAuthModal(true);
+    }else{
+      navigate("/dashboard");
+    }
     console.log("Create My Resume button clicked!");
   };
 
@@ -43,12 +48,15 @@ const LandingPage = () => {
             <div className="text-2xl font-bold text-[#1F2937]">Resumate</div>
           </div>
           <div className="flex space-x-4">
-            {user? <ProfileInfoCard/>: <button
+            {user? (
+              <ProfileInfoCard/>
+            ): (
+            <button
               className="bg-[#007BFF] text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-[#0056b3] transition-colors cursor-pointer"
               onClick={() => setOpenAuthModal(true)}>
             
               Log In / Sign Up
-            </button>}
+            </button>)}
             
           </div>
         </header>

@@ -41,7 +41,7 @@ const Modal = ({
                             <svg
                                 className="w-3 h-3"
                                 aria-hidden="true"
-                                xlmns="http://www.w3.org/2000/svg"
+                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 14 14">
                                     <path
@@ -49,7 +49,7 @@ const Modal = ({
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
-                                        d="M1 1l6 6mo 0lg 6M7 7l6-6M7 7l-6 6"></path>
+                                        d="M1 1l6 6M7 7l-6 6"></path>
                                 </svg>
                         </button>
 

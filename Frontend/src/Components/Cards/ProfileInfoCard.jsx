@@ -1,6 +1,6 @@
-import React from 'react'
-import {UserContext} from '../../Context/userContext';
-import { useNavigate, useContext } from 'react-router-dom';
+import React, { useContext } from 'react'
+import {UserContext} from '../Context/UserContext.js';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileInfoCard = () => {
     const {user, clearUser} = useContext(UserContext);
@@ -12,23 +12,29 @@ const ProfileInfoCard = () => {
         navigate('/')
     };
   return (
-    <div className="">
-        <img
-            src={user.profileImageUrl}
-            alt=""
-            className=""/>
+    user &&(
+        <div className="flex items-center">
+            {user.profileImageUrl ?
+            (<img
+                src={user.profileImageUrl}
+                alt=""
+                className="w-11 h-11 bg-gray-300 rounded-full mr-3"/>
+                ):(
+                    <div className="w-11 h-11 bg-gray-300 rounded-full mr-3"></div>
+                )}
 
-        <div>
-            <div className="">{user.name || ""}</div>
-            <button
-                className=""
-                onClick={handleLogout}>
-                    Logout
-                </button>
+            <div>
+                <div className="text-[15px] font-bold leading-3">{user.name || ""}</div>
+                <button
+                    className="text-purple-500 text-sm font-semibold cursor-pointer hover:underLine"
+                    onClick={handleLogout}>
+                        Logout
+                    </button>
+            </div>
+
+                
         </div>
-
-            
-    </div>
+    )
   )
 }
 
