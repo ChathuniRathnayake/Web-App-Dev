@@ -5,7 +5,7 @@ import LandingPage from "./pages/LandingPage";
 //import Login from "./pages/Auth/Login";
 //import SignUp from "./pages/Auth/SignUp";
 import Dashboard from "./pages/Home/Dashboard";
-import EditResume from "./pages/ResumeUpdate/forms/EditResume";
+import EditResume from "./pages/ResumeUpdate/EditResume.jsx";
 import UserProvider from "./Components/Context/userContext.jsx";
 
 
@@ -21,7 +21,7 @@ function App (){
             <Route path="/signup" element={<SignUp/>} />
             */}
             <Route path="/dashboard" element={<Dashboard/>} />
-            <Route path="/resume:resumeID" element={<EditResume/>} />
+            <Route path="/resume/:resumeId" element={<EditResume/>} />
           </Routes>
         </Router>
       </div>
