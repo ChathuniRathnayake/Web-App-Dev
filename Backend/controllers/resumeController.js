@@ -93,7 +93,7 @@ const createResume = async (req, res) => {
 //@access Private
 const getUserResume = async (req, res) => {
     try{
-        const resumes = await Resume.find({userId: req.user_id}).sort({updateAt: -1});
+        const resumes = await Resume.find({userId: req.user._id}).sort({updatedAt: -1});
         res.json(resumes);
     }
     catch (error){
@@ -165,7 +165,7 @@ const deleteResume = async (req, res) => {
 
         if(resume.thumbnailLink){
             const oldThumbnail = path.join(uploadsFolder, path.basename(resume.thumbnailLink));
-            if(fs.existsSync(oldThumbnail)) fs.unlinkSync(oldProfile);
+            if(fs.existsSync(oldThumbnail)) fs.unlinkSync(oldThumbnail);
         }
 
         const deleted = await Resume.findOneAndDelete({

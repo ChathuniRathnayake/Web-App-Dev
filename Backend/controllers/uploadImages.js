@@ -16,7 +16,7 @@ const uploadResumeImages = async (req, res) =>{
                 return res.status(404).json({ message: "Resume not found or unauthorized" });
             }
 
-            const uploadsFolder = path.join(_dirname, '..', 'uploads');
+            const uploadsFolder = path.join(__dirname, '..', 'uploads');
             const baseUrl = `${req.protocol}://${req.get("host")}`;
             const newThumbnail = req.files.thumbnail?.[0];
             const newProfileImage = req.files.profileImage?.[0];
@@ -35,10 +35,10 @@ const uploadResumeImages = async (req, res) =>{
 
             if(newProfileImage){
                 if(resume.profileInfo?.profilePreviewUrl){
-                    const oldProfile = path.join(uploadsFolder, path.basename(resume.profileInfo.profilePreviewUrl));
+                    const oldProfile = path.join(uploadsFolder, path.basename(resume.profileInfo.previewUrl));
                     if(fs.existsSync(oldProfile)) fs.unlinkSync(oldProfile);
                 }
-                resume.profileInfo.profilePreviewUrl = `${baseUrl}/uploads/${newProfileImage.filename}`;
+                resume.profileInfo.previewUrl = `${baseUrl}/uploads/${newProfileImage.filename}`;
             }
 
             await resume.save();

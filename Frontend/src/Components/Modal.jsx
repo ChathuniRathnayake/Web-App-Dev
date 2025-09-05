@@ -17,7 +17,7 @@ const Modal = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black/40">
         {/*Modal content*/}
         <div
-            className={"relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden max-w-lg w-full"}>
+            className={"relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden max-w-xl w-full"}>
                 {/*Modal Header*/}
                 {!hideHeader && (
                     <div className="flex items-center justify-between p-4 border-b border-gray-200">

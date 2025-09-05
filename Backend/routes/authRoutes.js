@@ -10,7 +10,7 @@ router.post("/register", registerUser); // Register User
 router.post("/login", loginUser); // Login User
 router.get("/profile", protect, getUserProfile); // Get User Profile
 
-router.post("/upload-image", protect, upload.single("image"), async (req, res) => {
+router.post("/upload-image", upload.single("image"), async (req, res) => {
     if(!req.file){
         return res.status(400).json({message: "No file uploaded"});
     }
@@ -18,9 +18,9 @@ router.post("/upload-image", protect, upload.single("image"), async (req, res) =
     const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
         req.file.filename
     }`;
-    try{
+    try{/*
         req.user.profileImageUrl = imageUrl;
-        await req.user.save();
+        await req.user.save();*/
 
         res.status(200).json({
         message: "File uploaded successfully",
