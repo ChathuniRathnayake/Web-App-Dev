@@ -7,6 +7,7 @@ import moment from 'moment'
 import DashboardLayout from "../../Components/Layouts/DashboardLayout"
 import Modal from '../../Components/Modal';
 import CreateResumeForm from "../../pages/Home/CreateResumeForm"
+import ResumeSummaryCard from '../../Components/Cards/ResumeSummaryCard';
 
 const Dashboard = () => {
 
